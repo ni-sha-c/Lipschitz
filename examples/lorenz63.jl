@@ -1,4 +1,13 @@
-dt = 0.005
+dt = 0.01
+function next(u, s)
+    sigma, rho, beta = s
+    x, y, z = u 
+    x1 = x + dt*(sigma.*(y - x))
+    y1 = y + dt*(x.*(rho .- z) - y)
+    z1 = z + dt*(x.*y - beta.*z) 
+	return [x1, y1, z1]
+end
+
 function lorenz63(u0, s, n)
     sigma, rho, beta = s
     d, m = size(u0)
