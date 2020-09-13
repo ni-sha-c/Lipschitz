@@ -1,11 +1,8 @@
 dt = 0.01
-function next(u, s)
-    sigma, rho, beta = s
-    x, y, z = u 
-    x1 = x + dt*(sigma.*(y - x))
-    y1 = y + dt*(x.*(rho .- z) - y)
-    z1 = z + dt*(x.*y - beta.*z) 
-	return [x1, y1, z1]
+function next(u0, s, u1)
+	u1[1] = u0[1] + dt*(s[1]*(u0[2] - u0[1]))
+	u1[2] = u0[2] + dt*(u0[1]*(s[2] - u0[3]) - u0[2])
+	u1[3] = u0[3] + dt*(u0[1]*u0[2] - s[3]*u0[3]) 
 end
 
 function lorenz63(u0, s, n)
