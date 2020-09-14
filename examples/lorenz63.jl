@@ -1,4 +1,4 @@
-dt = 0.01
+dt = 0.005
 function next(u, s)
     sigma, rho, beta = s
     x, y, z = u 

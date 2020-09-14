@@ -3,7 +3,7 @@ using JLD
 include("../examples/lorenz63.jl")
 function ergodic_average(rho)
 	s = [10., rho, 8/3]
-	n = 100000000
+	n = 100000000000
 	n_runup = 5000
 	z = 0.
 	u = rand(3)
@@ -20,7 +20,7 @@ function ergodic_average(rho)
 end
 function compute_erg_avg()
 	n_p = 250
-	rho = LinRange(28.751, 29, n_p)
+	rho = LinRange(28.0, 28.25, n_p)
 	z_rho = SharedArray{Float64, 1}(n_p)
 	t = @distributed for i = 1:n_p 
 		@show i
@@ -28,7 +28,7 @@ function compute_erg_avg()
 	end
 	wait(t)
 	@show z_rho
-	save("../data/erg_avg/Jar4_res.jld", "z_rho", 
+	save("../data/erg_avg/Jar1_res.jld", "z_rho", 
 	     z_rho, "rho", rho)
 	
 end
